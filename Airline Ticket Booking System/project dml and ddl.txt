@@ -1,0 +1,64 @@
+--------DML----------------
+
+CREATE TABLE Airline ( Air_id int NOT NULL, Air_dates varchar(15) NOT NULL, Air_capacity int NOT NULL, Air_type varchar(20) NOT NULL);
+ALTER TABLE Airline ADD PRIMARY KEY (Air_id);
+CREATE table TicketBooking (T_id int NOT NULL, T_destination varchar(25) NOT NULL, T_cost int NOT NULL, T_date varchar(15) NOT NULL, T_Seat int NOT NULL, Air_id int NOT
+NULL);
+ALTER TABLE TicketBooking ADD PRIMARY KEY (T_id);
+ALTER TABLE TicketBooking ADD FOREIGN KEY (Air_id) references Airline(Air_id);
+create table Reservation ( P_id int NOT NULL, P_name varchar(25) NOT NULL, P_email
+varchar(30) NOT NULL, P_password varchar(15) NOT NULL);
+ALTER TABLE Reservation ADD PRIMARY KEY (P_id);
+create table Passenger ( P_id int NOT NULL, P_name varchar(25) NOT NULL, P_email varchar(30) NOT NULL, P_password varchar(15) NOT NULL);
+ALTER TABLE Passenger ADD PRIMARY KEY (P_id);
+create table Passenger_mobile ( P_id int NOT NULL, P_mob int NOT NULL);
+ALTER TABLE Passenger_mobile ADD PRIMARY KEY (P_id);
+create table Login ( Login_id int NOT NULL PRIMARY KEY, Login_Password int NOT NULL);
+create table Admin_mobile ( Ad_id int NOT NULL PRIMARY KEY, Ad_mob int NOT NULL);
+create table Admin ( Ad_id int NOT NULL PRIMARY KEY, Ad_name Varchar(20) NOT NULL,
+Ad_email varchar(25) NOT NULL, Ad_dob varchar(15) NOT NULL, Login_id int NOT NULL);
+ALTER TABLE Admin ADD FOREIGN KEY (Login_id) references Login(Login_id);
+ALTER TABLE Admin ADD FOREIGN KEY (Ad_id) references Admin_mobile(Ad_id);
+ALTER TABLE Passenger ADD FOREIGN KEY (P_id) references Passenger_mobile(P_id);
+ALTER TABLE Passenger ADD FOREIGN KEY (P_id) references Reservation(P_id);
+
+----------------------DML ENDS-----------------
+
+----------------DDL---------------------------
+
+insert into Airline values('1', '1-06-21', '180', 'Private');
+insert into Airline values('2', '2-06-21', '100', 'Government');
+insert into Airline values('3', '3-06-21', '75', 'Private');
+insert into Airline values('4', '4-06-21', '200', 'Private');
+insert into Airline values('5', '5-06-21', '150', 'Government');
+insert into TicketBooking values( '1111', 'Goa', '5000', '1-06-21','10','1');
+insert into TicketBooking values( '2222', 'Chennai', '7000', '2-06-21','23','2');
+insert into TicketBooking values( '3333', 'Mumbai', '9000', '3-06-21','45','3');
+insert into TicketBooking values( '4444', 'New Delhi', '15000', '4-06-21','17','4');
+insert into TicketBooking values( '5555', 'Kolkata', '3500', '5-06-21','26','5');
+insert into Reservation values('11', 'Nachiketa Choudhary', 'nachi@email.com','100300');
+insert into Reservation values('12', 'Sachin Motwani', 'sachin@email.com','045045');
+insert into Reservation values('13', 'Nandita Menon', 'nandita@email.com','870870');
+insert into Reservation values('14', 'Shah Rukh Khan', 'srk@email.com','500500');
+insert into Reservation values('15', 'Kuldeep Yadav', 'kull@email.com','900400');
+insert into Passenger values('11', 'Nachiketa Choudhary', 'nachi@email.com','100300');
+insert into Passenger values('12', 'Sachin Motwani', 'sachin@email.com','045045');
+insert into Passenger values('13', 'Nandita Menon', 'nandita@email.com','870870');
+insert into Passenger values('14', 'Shah Rukh Khan', 'srk@email.com','500500');
+insert into Passenger values('15', 'Kuldeep Yadav', 'kull@email.com','900400');
+insert into Passenger_mobile values( '11', '8796767599');
+insert into Passenger_mobile values( '12', '9765236798');
+insert into Passenger_mobile values( '13', '7698764567');
+insert into Passenger_mobile values( '14', '9746487676');
+insert into Passenger_mobile values( '15', '6784648076');
+insert into Admin values('1', 'Deepak Hooda','deepak@admin.com','12-12-01','123456');
+insert into Admin values('2', 'Suresh Raina','suresh@admin.com','15-12-02','999111');
+insert into Admin values('3', 'Mahesh Bhatt','mahesh@admin.com','20-11-01','200300');
+insert into admin_mobile values ('1','7654896587');
+insert into admin_mobile values ('2','5456897377');
+insert into admin_mobile values ('3','9944467855');
+insert into login values('123456','065065');
+insert into login values('999111','222333');
+insert into login values('200300','500700');
+
+--------DDL ENDS-----------------------------
